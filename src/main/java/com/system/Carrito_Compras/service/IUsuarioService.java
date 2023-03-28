@@ -16,6 +16,5 @@ public interface IUsuarioService extends IGenericService<Usuario, Long> {
 
 	public List<Usuario> buscarUsuario(String cedula);
 
-	public List<Usuario> listarUsuario();
 
 }
