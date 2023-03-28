@@ -29,6 +29,8 @@ public class Carrito implements Serializable {
 
     private String estado_carrito;
 
+    private Double valor_total;
+
     private boolean enabled = true;
 
     @OneToMany(mappedBy = "carrito",cascade = CascadeType.ALL)
