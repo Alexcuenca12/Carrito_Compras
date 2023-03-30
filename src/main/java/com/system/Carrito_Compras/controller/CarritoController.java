@@ -45,4 +45,39 @@ public class CarritoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @PutMapping("/eliminar/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestBody Carrito c) {
+        Carrito carrito = CarritoService.findById(id);
+        if (carrito == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            try {
+                carrito.setEnabled(c.isEnabled());
+                return new ResponseEntity<>(CarritoService.save(carrito), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+    }
+
+    @PutMapping("/actualizar/{id}")
+
+    public ResponseEntity<Carrito> actualizarCarrito(@PathVariable Long id,@RequestBody Carrito c) {
+        Carrito carrito = CarritoService.findById(id);
+        if (carrito == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            try {
+                carrito.setFecha_carrito(c.getFecha_carrito());
+                carrito.setEstado_carrito(c.getEstado_carrito());
+                carrito.setValor_total(c.getValor_total());
+                return new ResponseEntity<>(CarritoService.save(carrito), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        }
+    }
 }

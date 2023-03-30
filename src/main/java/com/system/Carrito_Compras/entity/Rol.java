@@ -28,6 +28,8 @@ public class Rol implements Serializable {
 
     private String descripcion;
 
+    private boolean enabled = true;
+
     @JsonIgnore
     @OneToMany(mappedBy = "rol")
     private List<Usuario> usuario;

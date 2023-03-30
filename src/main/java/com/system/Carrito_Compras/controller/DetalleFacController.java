@@ -1,5 +1,6 @@
 package com.system.Carrito_Compras.controller;
 
+import com.system.Carrito_Compras.entity.Categoria;
 import com.system.Carrito_Compras.entity.Detalle_Carrito;
 import com.system.Carrito_Compras.service.IDetalleFacService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,36 @@ public class DetalleFacController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PutMapping("/eliminar/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestBody Detalle_Carrito detalleCarrito) {
+        Detalle_Carrito detalle = DetalleService.findById(id);
+        if (detalle == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            try {
+                detalle.setEnabled(detalleCarrito.isEnabled());
+                return new ResponseEntity<>(DetalleService.save(detalle), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+    }
 
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<Detalle_Carrito> actualizarCategoria(@PathVariable Long id,@RequestBody Detalle_Carrito detalleCarrito) {
+        Detalle_Carrito detalle = DetalleService.findById(id);
+        if (detalle == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            try {
+                detalle.setCantidad(detalleCarrito.getCantidad());
+                detalle.setValor_total(detalleCarrito.getValor_total());
+                return new ResponseEntity<>(DetalleService.save(detalle), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
 
-
+        }
+    }
 
 }

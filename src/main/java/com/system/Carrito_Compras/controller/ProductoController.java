@@ -1,5 +1,6 @@
 package com.system.Carrito_Compras.controller;
 
+import com.system.Carrito_Compras.entity.Detalle_Carrito;
 import com.system.Carrito_Compras.entity.Producto;
 import com.system.Carrito_Compras.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,40 @@ public class ProductoController {
             return new ResponseEntity<>(productoService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PutMapping("/eliminar/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestBody Producto producto) {
+        Producto produc = productoService.findById(id);
+        if (produc == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            try {
+                produc.setEnabled(producto.isEnabled());
+                return new ResponseEntity<>(productoService.save(produc), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id,@RequestBody Producto p) {
+        Producto producto = productoService.findById(id);
+        if (producto == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            try {
+                producto.setNom_Producto(producto.getNom_Producto());
+                producto.setStock(producto.getStock());
+                producto.setDescripcion(producto.getDescripcion());
+                producto.setValor_unitario(producto.getValor_unitario());
+                producto.setFoto(producto.getFoto());
+                return new ResponseEntity<>(productoService.save(producto), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
         }
     }
 }

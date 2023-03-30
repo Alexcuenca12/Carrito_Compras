@@ -42,4 +42,38 @@ public class CategoriaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @PutMapping("/eliminar/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestBody Categoria c) {
+        Categoria categoria = categoriaService.findById(id);
+        if (categoria == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            try {
+                categoria.setEnabled(c.isEnabled());
+                return new ResponseEntity<>(categoriaService.save(categoria), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+    }
+
+    @PutMapping("/actualizar/{id}")
+
+    public ResponseEntity<Categoria> actualizarCategoria(@PathVariable Long id,@RequestBody Categoria c) {
+        Categoria categoria = categoriaService.findById(id);
+        if (categoria == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            try {
+                categoria.setNombre_categoria(c.getNombre_categoria());
+                categoria.setDescripcion_categoria(c.getDescripcion_categoria());
+                return new ResponseEntity<>(categoriaService.save(categoria), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        }
+    }
 }
