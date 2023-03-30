@@ -65,11 +65,11 @@ public class ProductoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             try {
-                producto.setNom_Producto(producto.getNom_Producto());
-                producto.setStock(producto.getStock());
-                producto.setDescripcion(producto.getDescripcion());
-                producto.setValor_unitario(producto.getValor_unitario());
-                producto.setFoto(producto.getFoto());
+                producto.setNom_Producto(p.getNom_Producto());
+                producto.setStock(p.getStock());
+                producto.setDescripcion(p.getDescripcion());
+                producto.setValor_unitario(p.getValor_unitario());
+                producto.setFoto(p.getFoto());
                 return new ResponseEntity<>(productoService.save(producto), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
