@@ -1,13 +1,10 @@
 package com.system.Carrito_Compras.controller;
-
-
 import com.system.Carrito_Compras.entity.Rol;
 import com.system.Carrito_Compras.service.IRolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @CrossOrigin(origins = { "*" })

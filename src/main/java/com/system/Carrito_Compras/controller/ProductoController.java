@@ -1,6 +1,4 @@
 package com.system.Carrito_Compras.controller;
-
-import com.system.Carrito_Compras.entity.Detalle_Carrito;
 import com.system.Carrito_Compras.entity.Producto;
 import com.system.Carrito_Compras.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
