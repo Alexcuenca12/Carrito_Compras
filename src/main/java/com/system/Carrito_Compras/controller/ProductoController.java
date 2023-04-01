@@ -20,6 +20,7 @@ public class ProductoController {
     @PostMapping("/crear")
     public ResponseEntity<Producto> crear(@RequestBody Producto r) {
         try {
+
             return new ResponseEntity<>(productoService.save(r), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

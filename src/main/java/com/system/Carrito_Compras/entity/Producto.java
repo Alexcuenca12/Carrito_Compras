@@ -31,13 +31,13 @@ public class Producto implements Serializable {
 
     private Double valor_unitario;
 
-    private Byte foto;
+    private byte[] foto;
 
     private boolean enabled = true;
 
-    @OneToOne(mappedBy = "producto")
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
     private Categoria categoria;
-
     @ManyToOne
     @JoinColumn(name = "id_detalleCarrito")
     private Detalle_Carrito detalleCarrito;
