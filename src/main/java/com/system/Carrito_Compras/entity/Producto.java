@@ -31,6 +31,8 @@ public class Producto implements Serializable {
 
     private Double valor_unitario;
 
+    @Lob
+    @Column(name = "foto", columnDefinition="longblob")
     private byte[] foto;
 
     private boolean enabled = true;
