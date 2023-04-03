@@ -42,8 +42,12 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Long> implem
 
 	@Override
 	public CrudRepository<Usuario, Long> getDao() {
-
 		return UsuarioDao;
+	}
+
+	@Override
+	public List<Usuario> listarUsuario() {
+		return UsuarioDao.listarUsuario();
 	}
 
 }

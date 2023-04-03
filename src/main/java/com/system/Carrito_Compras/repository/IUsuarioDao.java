@@ -20,4 +20,7 @@ public interface IUsuarioDao extends CrudRepository<Usuario, Long> {
 
 	public boolean existsByPassword(String password);
 
+	@Query(value = "Select * from usuario u join persona p on u.id_persona = p.id_persona", nativeQuery = true)
+	List<Usuario>listarUsuario();
+
 }
