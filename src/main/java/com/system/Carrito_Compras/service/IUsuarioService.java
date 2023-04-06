@@ -9,7 +9,7 @@ public interface IUsuarioService extends IGenericService<Usuario, Long> {
 	public Usuario save(Usuario usuario);
 
 	public Usuario search(String username);
-
+	Usuario login (String username, String password);
 	public void delete(Long id);
 
 	public List<Usuario> getUsuarios();

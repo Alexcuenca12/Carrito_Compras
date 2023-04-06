@@ -23,6 +23,12 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Long> implem
 	}
 
 	@Override
+	@Transactional(readOnly = true)
+	public Usuario login(String username, String password) {
+		return  UsuarioDao.findByusernameAndPassword(username,password);
+	}
+
+	@Override
 	@Transactional
 	public void delete(Long id) {
 		UsuarioDao.deleteById(id);

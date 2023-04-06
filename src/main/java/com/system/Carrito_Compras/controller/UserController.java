@@ -98,4 +98,11 @@ public class UserController {
 
 	}
 
+	@RequestMapping(value = "login/{username}/{password}", method = RequestMethod.GET)
+	@ResponseBody
+	@CrossOrigin
+	public Usuario login(@PathVariable String username, @PathVariable String password){
+		return usuarioService.login(username, password);
+	}
+
 }

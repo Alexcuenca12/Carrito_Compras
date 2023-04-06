@@ -13,6 +13,7 @@ public interface IUsuarioDao extends CrudRepository<Usuario, Long> {
 	public Usuario findByUsername(String username);
 
 	Boolean existsByUsername(String username);
+	Usuario findByusernameAndPassword(String username, String password);
 
 	// Metodos Query
 	@Query(value = "SELECT * FROM usuario WHERE username = ?", nativeQuery = true)
