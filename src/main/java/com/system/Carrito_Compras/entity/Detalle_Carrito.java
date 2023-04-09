@@ -29,10 +29,9 @@ public class Detalle_Carrito implements Serializable {
 
     private boolean enabled = true;
 
-    @OneToMany(mappedBy = "detalleCarrito",cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Producto> productoList = new ArrayList<>();
-
+    @ManyToOne
+    @JoinColumn(name = "id_producto")
+    private Producto producto;
     @ManyToOne
     @JoinColumn(name = "id_carrito")
     private Carrito carrito;

@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -49,9 +52,9 @@ public class Persona implements Serializable {
 
     private boolean enabled = true;
 
-    @OneToOne
-    @JoinColumn(name = "id_carrito")
-    private Carrito carrito;
+    @OneToMany(mappedBy = "persona_carrito",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Carrito> carritos = new ArrayList<>();
 
     @JsonIgnore
     @OneToOne(mappedBy = "persona")

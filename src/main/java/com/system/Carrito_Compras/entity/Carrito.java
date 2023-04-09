@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,6 +26,8 @@ public class Carrito implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_carrito;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date fecha_carrito;
 
     private String estado_carrito;
@@ -37,6 +40,7 @@ public class Carrito implements Serializable {
     @JsonIgnore
     private List<Detalle_Carrito> detalleCarrito = new ArrayList<>();
 
-    @OneToOne(mappedBy = "carrito")
-    private Persona persona;
+    @ManyToOne
+    @JoinColumn(name = "id_persona")
+    private Persona persona_carrito;
 }

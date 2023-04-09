@@ -1,5 +1,6 @@
 package com.system.Carrito_Compras.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.security.PrivateKey;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -40,8 +43,7 @@ public class Producto implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
-    @ManyToOne
-    @JoinColumn(name = "id_detalleCarrito")
-    private Detalle_Carrito detalleCarrito;
-
+    @OneToMany(mappedBy = "producto",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Detalle_Carrito> detalleCarrito = new ArrayList<>();
 }
