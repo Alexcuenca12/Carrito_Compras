@@ -33,7 +33,7 @@ public class UserController {
         return usuarioService.search(username);
     }
 
-    @DeleteMapping("/delete/{usuarioId}")
+    @PutMapping("/delete/{usuarioId}")
     public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestBody Usuario u) {
         Usuario usuario = usuarioService.findById(id);
         if (usuario == null) {
