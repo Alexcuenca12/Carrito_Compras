@@ -30,7 +30,7 @@ public class ProductoController {
     @GetMapping("/listar")
     public ResponseEntity<List<Producto>> obtenerLista() {
         try {
-            return new ResponseEntity<>(productoService.findByAll(), HttpStatus.OK);
+            return new ResponseEntity<>(productoService.listar(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -51,7 +51,7 @@ public class ProductoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             try {
-                produc.setEnabled(producto.isEnabled());
+                produc.setEnabled(false);
                 return new ResponseEntity<>(productoService.save(produc), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

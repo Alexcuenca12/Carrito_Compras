@@ -26,7 +26,7 @@ public class CategoriaController {
     @GetMapping("/listar")
     public ResponseEntity<List<Categoria>> obtenerLista() {
         try {
-            return new ResponseEntity<>(categoriaService.findByAll(), HttpStatus.OK);
+            return new ResponseEntity<>(categoriaService.listar(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -49,7 +49,7 @@ public class CategoriaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             try {
-                categoria.setEnabled(c.isEnabled());
+                categoria.setEnabled(false);
                 return new ResponseEntity<>(categoriaService.save(categoria), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

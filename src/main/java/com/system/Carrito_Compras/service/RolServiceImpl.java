@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RolServiceImpl extends GenericServiceImpl<Rol, Long> implements IRolService {
 
@@ -18,4 +20,8 @@ public class RolServiceImpl extends GenericServiceImpl<Rol, Long> implements IRo
 		return rolRepository;
 	}
 
+	@Override
+	public List<Rol> listar() {
+		return rolRepository.listarRol();
+	}
 }

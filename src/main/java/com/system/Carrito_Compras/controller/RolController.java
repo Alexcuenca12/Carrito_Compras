@@ -27,7 +27,7 @@ public class RolController {
 	@GetMapping("/listar")
 	public ResponseEntity<List<Rol>> obtenerLista() {
 		try {
-			return new ResponseEntity<>(rolService.findByAll(), HttpStatus.OK);
+			return new ResponseEntity<>(rolService.listar(), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -48,7 +48,7 @@ public class RolController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
 			try {
-				rol.setEnabled(rol.isEnabled());
+				rol.setEnabled(false);
 				return new ResponseEntity<>(rolService.save(rol), HttpStatus.CREATED);
 			} catch (Exception e) {
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

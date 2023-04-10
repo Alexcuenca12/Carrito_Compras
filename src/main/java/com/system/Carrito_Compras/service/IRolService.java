@@ -1,8 +1,11 @@
 package com.system.Carrito_Compras.service;
 
 
+
 import com.system.Carrito_Compras.entity.Rol;
 
-public interface IRolService extends IGenericService<Rol, Long>{
+import java.util.List;
 
+public interface IRolService extends IGenericService<Rol, Long>{
+    public List<Rol> listar();
 }

@@ -28,7 +28,7 @@ public class DetalleFacController {
     @GetMapping("/listar")
     public ResponseEntity<List<Detalle_Carrito>> obtenerLista() {
         try {
-            return new ResponseEntity<>(DetalleService.findByAll(), HttpStatus.OK);
+            return new ResponseEntity<>(DetalleService.listar(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -49,7 +49,7 @@ public class DetalleFacController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             try {
-                detalle.setEnabled(detalleCarrito.isEnabled());
+                detalle.setEnabled(false);
                 return new ResponseEntity<>(DetalleService.save(detalle), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

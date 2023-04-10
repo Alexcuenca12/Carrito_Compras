@@ -25,6 +25,6 @@ public class IPersonaServiceImpl extends GenericServiceImpl<Persona, Long> imple
 
     @Override
     public List<Persona> listar() {
-        return null;
+        return productoDao.listarPersonas();
     }
 }

@@ -19,7 +19,6 @@ public class CarritoServiceImpl  extends GenericServiceImpl<Carrito, Long> imple
         return carritoDao;
     }
 
-
     @Override
     public Carrito search(String id_carrito) {
         return null;
@@ -27,6 +26,6 @@ public class CarritoServiceImpl  extends GenericServiceImpl<Carrito, Long> imple
 
     @Override
     public List<Carrito> listar() {
-        return null;
+        return carritoDao.listarCarrito();
     }
 }

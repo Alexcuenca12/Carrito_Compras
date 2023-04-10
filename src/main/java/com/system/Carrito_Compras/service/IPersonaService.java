@@ -10,4 +10,6 @@ public interface IPersonaService extends IGenericService<Persona, Long> {
 	public Persona search(String cedula);
 
 	public List<Persona> listar();
+
+	
 }

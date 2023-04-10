@@ -16,20 +16,12 @@ public class PersonaController {
     @GetMapping("/listar")
     public ResponseEntity<List<Persona>> obtenerLista() {
         try {
-            return new ResponseEntity<>(personaService.findByAll(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/listarP")
-    public ResponseEntity<List<Persona>> obtenerPacientes() {
-        try {
             return new ResponseEntity<>(personaService.listar(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @GetMapping("/buscar/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") Long id) {
@@ -40,10 +32,7 @@ public class PersonaController {
         }
     }
 
-    @GetMapping("/buscarcedul/{cedula}")
-    public Persona obtenerUsuario(@PathVariable("cedula") String cedula) {
-        return personaService.search(cedula);
-    }
+
 
     @PostMapping("/crear")
     public ResponseEntity<Persona> crear(@RequestBody Persona p) {
@@ -61,7 +50,7 @@ public class PersonaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             try {
-                persona.setEnabled(persona.isEnabled());
+                persona.setEnabled(false);
                 return new ResponseEntity<>(personaService.save(persona), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

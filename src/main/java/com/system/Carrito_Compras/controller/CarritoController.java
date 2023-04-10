@@ -27,7 +27,7 @@ public class CarritoController {
     @GetMapping("/listar")
     public ResponseEntity<List<Carrito>> obtenerLista() {
         try {
-            return new ResponseEntity<>(CarritoService.findByAll(), HttpStatus.OK);
+            return new ResponseEntity<>(CarritoService.listar(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -50,7 +50,7 @@ public class CarritoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             try {
-                carrito.setEnabled(c.isEnabled());
+                carrito.setEnabled(false);
                 return new ResponseEntity<>(CarritoService.save(carrito), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

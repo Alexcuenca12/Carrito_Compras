@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IDetalleServiceImpl extends GenericServiceImpl <Detalle_Carrito , Long>  implements IDetalleFacService{
 
@@ -15,9 +17,13 @@ public class IDetalleServiceImpl extends GenericServiceImpl <Detalle_Carrito , L
     @Autowired
     IDetalleFac DetalleRepository;
 
-
     @Override
     public CrudRepository<Detalle_Carrito, Long> getDao() {
         return DetalleRepository;
+    }
+
+    @Override
+    public List<Detalle_Carrito> listar() {
+        return DetalleRepository.listarDetalle();
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductoServiceImpl extends GenericServiceImpl<Producto, Long> implements IProductoService {
 
@@ -14,5 +16,10 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto, Long> impl
     @Override
     public CrudRepository<Producto, Long> getDao() {
         return productoDao;
+    }
+
+    @Override
+    public List<Producto> listar() {
+        return productoDao.listarProducto();
     }
 }

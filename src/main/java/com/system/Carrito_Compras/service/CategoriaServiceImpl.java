@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoriaServiceImpl extends GenericServiceImpl<Categoria, Long> implements ICategoriaService {
     @Autowired
@@ -13,5 +15,9 @@ public class CategoriaServiceImpl extends GenericServiceImpl<Categoria, Long> im
     @Override
     public CrudRepository<Categoria, Long> getDao() {
         return categoriaDao;
+    }
+
+    public List<Categoria> listar() {
+        return categoriaDao.listarCategoria();
     }
 }
