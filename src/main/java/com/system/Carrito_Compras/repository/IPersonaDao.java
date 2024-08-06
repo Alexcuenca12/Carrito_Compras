@@ -15,6 +15,7 @@ public interface IPersonaDao extends JpaRepository<Persona, Long> {
 	public Persona findByEmail(String email);
 
 	Boolean existsByEmail(String email);
+
 	@Query(value = "SELECT * from persona where enabled =1",nativeQuery = true)
 	List<Persona> listarPersonas();
 
